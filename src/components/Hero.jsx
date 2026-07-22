@@ -1,10 +1,31 @@
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { createSectionClickHandler } from "../utils/scrollToSection";
 
 const lines = ["WEBSITES,", "PORTALS & SYSTEMS", "FOR REAL WORKFLOWS."];
 export default function Hero() {
   const reduced = useReducedMotion();
+  const pointerX = useMotionValue(50);
+  const pointerY = useMotionValue(50);
+  const smoothX = useSpring(pointerX, { stiffness: 90, damping: 24 });
+  const smoothY = useSpring(pointerY, { stiffness: 90, damping: 24 });
+  const parallaxX = useTransform(smoothX, [0, 100], [-6, 6]);
+  const parallaxY = useTransform(smoothY, [0, 100], [-5, 5]);
+  const spotlight = useMotionTemplate`radial-gradient(circle at ${smoothX}% ${smoothY}%, rgba(53, 120, 246, 0.12), transparent 38%)`;
+
+  const trackPointer = (event) => {
+    if (reduced) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pointerX.set(((event.clientX - bounds.left) / bounds.width) * 100);
+    pointerY.set(((event.clientY - bounds.top) / bounds.height) * 100);
+  };
   return (
     <section className="hero" id="home">
       <div className="hero-main">
@@ -69,6 +90,12 @@ export default function Hero() {
         initial={reduced ? false : { opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: reduced ? 0 : 0.65, duration: reduced ? 0 : 0.8 }}
+        onPointerMove={trackPointer}
+        onPointerLeave={() => {
+          pointerX.set(50);
+          pointerY.set(50);
+        }}
+        style={{ backgroundImage: reduced ? undefined : spotlight }}
         aria-hidden="true"
       >
         <div className="visual-top">
@@ -77,7 +104,13 @@ export default function Hero() {
             <i /> OPERATIONAL
           </span>
         </div>
-        <div className="visual-core">
+        <motion.div
+          className="visual-core"
+          style={reduced ? undefined : { x: parallaxX, y: parallaxY }}
+        >
+          <span className="visual-particle particle-a" />
+          <span className="visual-particle particle-b" />
+          <span className="visual-particle particle-c" />
           <span className="blueprint-node node-a">INPUT</span>
           <span className="blueprint-node node-b">PROCESS</span>
           <span className="blueprint-node node-c">OUTPUT</span>
@@ -90,7 +123,7 @@ export default function Hero() {
           </div>
           <span className="axis-label x">WORKFLOW</span>
           <span className="axis-label y">SYSTEM LOGIC</span>
-        </div>
+        </motion.div>
         <div className="visual-list">
           <span>01 WEB SYSTEMS</span>
           <span>02 INTERNAL PORTALS</span>

@@ -36,6 +36,28 @@ export default function CaseStudy({ project, index }) {
             <p>{project.solution}</p>
           </motion.div>
         </div>
+        <motion.div className="case-outcomes" variants={reveal}>
+          <div>
+            <span className="micro-label">Business impact</span>
+            <p>{project.impact}</p>
+          </div>
+          <div>
+            <span className="micro-label">Result</span>
+            <p>{project.result}</p>
+          </div>
+          <div>
+            <span className="micro-label">Performance</span>
+            <p>{project.performance}</p>
+          </div>
+          <div>
+            <span className="micro-label">Key achievements</span>
+            <ul>
+              {project.achievements.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
         <motion.ul
           className="case-tech"
           variants={{ visible: { transition: { staggerChildren: 0.055 } } }}

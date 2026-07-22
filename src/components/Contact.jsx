@@ -112,6 +112,24 @@ export default function Contact() {
             >
               Start a Conversation <ArrowUpRight size={17} />
             </a>
+            <dl className="contact-facts">
+              <div>
+                <dt>Availability</dt>
+                <dd>Freelance projects</dd>
+              </div>
+              <div>
+                <dt>Response time</dt>
+                <dd>1–2 business days</dd>
+              </div>
+              <div>
+                <dt>Location</dt>
+                <dd>Karachi, Pakistan</dd>
+              </div>
+              <div>
+                <dt>Timezone</dt>
+                <dd>PKT / UTC+5</dd>
+              </div>
+            </dl>
             <ContactLinks />
           </div>
         </Reveal>
@@ -129,6 +147,7 @@ export default function Contact() {
                     id={name}
                     name={name}
                     type={type}
+                    placeholder=" "
                     value={form[name]}
                     onChange={update}
                     aria-invalid={Boolean(errors[name])}
@@ -146,6 +165,7 @@ export default function Contact() {
                 id="type"
                 name="type"
                 value={form.type}
+                required
                 onChange={update}
                 aria-invalid={Boolean(errors.type)}
                 aria-describedby={errors.type ? "type-error" : undefined}
@@ -171,6 +191,7 @@ export default function Contact() {
                 id="message"
                 name="message"
                 rows="5"
+                placeholder=" "
                 value={form.message}
                 onChange={update}
                 aria-invalid={Boolean(errors.message)}

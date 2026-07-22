@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import {
   getNavbarHeight,
@@ -20,6 +26,12 @@ export default function Navbar() {
   const menuRef = useRef(null);
   const initialHashAligned = useRef(false);
   const reducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 28,
+    mass: 0.25,
+  });
 
   useEffect(() => {
     const navbar = navbarRef.current;
@@ -137,6 +149,11 @@ export default function Navbar() {
 
   return (
     <header className="nav" ref={navbarRef}>
+      <motion.div
+        className="scroll-progress"
+        style={{ scaleX: reducedMotion ? scrollYProgress : smoothProgress }}
+        aria-hidden="true"
+      />
       <a
         className="wordmark"
         href="#home"

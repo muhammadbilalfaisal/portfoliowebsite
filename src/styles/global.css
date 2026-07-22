@@ -27,7 +27,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 18px;
 }
 body:before {
@@ -166,6 +166,15 @@ h2 em {
   background: rgba(11, 12, 14, 0.88);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: left;
 }
 .wordmark {
   font: 600 19px var(--display);
@@ -316,6 +325,18 @@ h2 em {
   grid-template-rows: 48px 1fr auto;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+}
+.system-visual:before {
+  content: "";
+  position: absolute;
+  inset: 18% 8%;
+  z-index: -1;
+  border-radius: 50%;
+  background: rgba(53, 120, 246, 0.1);
+  filter: blur(55px);
+  pointer-events: none;
 }
 .system-visual:after {
   content: "";
@@ -326,6 +347,12 @@ h2 em {
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 32px 32px;
   pointer-events: none;
+  animation: blueprint-grid 22s linear infinite;
+}
+@keyframes blueprint-grid {
+  to {
+    background-position: 32px 32px;
+  }
 }
 .visual-top {
   display: flex;
@@ -353,6 +380,34 @@ h2 em {
   position: relative;
   display: grid;
   place-items: center;
+}
+.visual-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(240, 239, 233, 0.5);
+  animation: particle-float 8s ease-in-out infinite;
+}
+.particle-a {
+  left: 24%;
+  top: 20%;
+}
+.particle-b {
+  right: 18%;
+  top: 26%;
+  animation-delay: -3s;
+}
+.particle-c {
+  left: 30%;
+  bottom: 18%;
+  animation-delay: -5s;
+}
+@keyframes particle-float {
+  50% {
+    opacity: 0.35;
+    transform: translate3d(4px, -9px, 0);
+  }
 }
 .orbit {
   position: absolute;
@@ -504,8 +559,30 @@ h2 em {
   border-bottom: 1px solid var(--line);
   transition: background 0.35s var(--ease);
 }
+.service:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent 72%);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: 0.45s var(--ease);
+}
 .service:hover {
-  background: rgba(255, 255, 255, 0.018);
+  background: linear-gradient(
+    90deg,
+    rgba(53, 120, 246, 0.055),
+    rgba(255, 255, 255, 0.012) 62%,
+    transparent
+  );
+}
+.service:hover:after {
+  opacity: 0.65;
+  transform: scaleX(1);
 }
 .service > div,
 .service > ul {
@@ -584,6 +661,28 @@ h2 em {
   overflow: hidden;
   background: var(--bg-2);
   border: 1px solid var(--line);
+  transition: box-shadow 0.45s var(--ease);
+}
+.case-image-wrap:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.055) 50%,
+    transparent 62%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.8s var(--ease);
+  pointer-events: none;
+}
+.case-image-wrap:hover:before {
+  transform: translateX(100%);
+}
+.case-image-wrap:hover {
+  box-shadow: 0 26px 65px rgba(0, 0, 0, 0.28);
 }
 .case-image-wrap:after {
   content: "";
@@ -678,6 +777,25 @@ h2 em {
   margin: 10px 0 0;
   font-size: 14px;
   line-height: 1.75;
+}
+.case-outcomes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 28px;
+  margin: 0 0 32px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.case-outcomes p,
+.case-outcomes ul {
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.case-outcomes ul {
+  padding-left: 16px;
 }
 .case-tech {
   display: flex;
@@ -777,6 +895,16 @@ h2 em {
   bottom: 20px;
   width: 1px;
   background: #c6c6c1;
+}
+.process-progress {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  bottom: 20px;
+  width: 1px;
+  z-index: 1;
+  background: var(--accent);
+  transform-origin: top;
 }
 .process-steps article {
   display: grid;
@@ -916,6 +1044,14 @@ form {
   color: #92969b;
   font-size: 11px;
   line-height: 1.5;
+  transform-origin: left;
+  transition:
+    color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+.form-field:focus-within label {
+  color: var(--ink);
+  transform: translateY(-2px);
 }
 .form-field-wide {
   grid-column: span 2;
@@ -944,6 +1080,7 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--accent);
+  box-shadow: 0 8px 18px -18px var(--accent);
 }
 select option {
   background: #17191d;
@@ -982,6 +1119,36 @@ select option {
   border-left: 2px solid var(--accent);
   background: rgba(255, 255, 255, 0.025);
 }
+.form-notice.success {
+  animation: notice-in 0.45s var(--ease);
+}
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.contact-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 48px 0 0;
+  border-top: 1px solid var(--line);
+}
+.contact-facts div {
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.contact-facts dt {
+  color: #62666b;
+  font: 400 9px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.contact-facts dd {
+  margin: 4px 0 0;
+  color: #b9bdc2;
+  font-size: 13px;
+}
 .availability-badge {
   width: fit-content;
   display: inline-flex;
@@ -1012,6 +1179,13 @@ select option {
   color: #686d75;
   font: 400 7px var(--mono);
   letter-spacing: 0.08em;
+  animation: blueprint-node-in 0.8s var(--ease) both;
+}
+@keyframes blueprint-node-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
 }
 .node-a {
   left: 9%;
@@ -1020,10 +1194,12 @@ select option {
 .node-b {
   right: 8%;
   top: 39%;
+  animation-delay: 0.12s;
 }
 .node-c {
   left: 14%;
   bottom: 23%;
+  animation-delay: 0.24s;
 }
 .data-flow {
   position: absolute;
@@ -1031,6 +1207,17 @@ select option {
   height: 1px;
   background: linear-gradient(90deg, transparent, #3a4048, transparent);
   transform-origin: left;
+  animation: blueprint-line-in 1.2s 0.25s var(--ease) both;
+}
+@keyframes blueprint-line-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
 }
 .flow-a {
   left: 19%;
@@ -1089,13 +1276,26 @@ select option {
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.008);
-  transition: background 0.3s var(--ease);
+  transition:
+    background 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
 }
 .solution-item:hover {
-  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(53, 120, 246, 0.36);
+  background: linear-gradient(
+    145deg,
+    rgba(53, 120, 246, 0.065),
+    rgba(255, 255, 255, 0.018)
+  );
+  box-shadow: inset 0 0 45px rgba(53, 120, 246, 0.025);
 }
 .solution-item > svg {
   color: var(--accent);
+  transition: transform 0.35s var(--ease);
+}
+.solution-item:hover > svg {
+  transform: translateY(-3px) rotate(-3deg);
 }
 .solution-item h3 {
   margin: 45px 0 12px;
@@ -1204,6 +1404,12 @@ footer {
   gap: 18px;
   border-radius: 0;
   white-space: nowrap;
+  will-change: transform;
+}
+.button:hover,
+.case-button:hover,
+.form-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
 }
 .button svg,
 .case-button svg,
@@ -1211,6 +1417,13 @@ footer {
 .nav-cta svg,
 .contact-links svg {
   flex: 0 0 auto;
+  transition: transform 0.32s var(--ease);
+}
+.button:hover svg,
+.case-button:hover svg,
+.form-submit:hover:not(:disabled) svg,
+.nav-cta:hover svg {
+  transform: translate(3px, -3px);
 }
 .step-marker span,
 .skill-no {
@@ -1481,6 +1694,10 @@ footer {
     padding: 65px 0;
   }
   .case-details {
+    grid-template-columns: 1fr;
+  }
+  .case-outcomes,
+  .contact-facts {
     grid-template-columns: 1fr;
   }
   .case-actions {

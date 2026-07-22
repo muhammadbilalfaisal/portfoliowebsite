@@ -78,6 +78,10 @@ Each project uses this structure:
   description: "Short business-focused project description.",
   challenge: "The problem that needed to be solved.",
   solution: "How the project solved the problem.",
+  impact: "The business value created by the solution.",
+  achievements: ["Key achievement one", "Key achievement two"],
+  result: "The resulting improvement or project outcome.",
+  performance: "Responsive or performance-focused improvements.",
   technologies: ["React", "JavaScript", "CSS"],
   image: "/images/new-project.jpg",
   projectUrl: "https://example.com",
@@ -165,6 +169,8 @@ src/components/Contact.jsx    Contact CTA and form
 src/utils/scrollToSection.js  Navbar-aware section scrolling
 src/styles/global.css         Global and responsive styling
 index.html                    SEO and Open Graph metadata
+public/robots.txt             Search-engine crawling rules
+public/sitemap.xml            Public sitemap
 ```
 
 ## Troubleshooting

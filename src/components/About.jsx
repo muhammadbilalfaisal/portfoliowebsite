@@ -29,18 +29,19 @@ export default function About() {
         </Reveal>
         <Reveal className="about-copy" delay={0.1}>
           <p className="lead">
-            I focus on developing practical digital solutions for businesses and
-            organizations. My work combines web development, internal system
-            design, IT operations, and automation.
+            I build business systems that turn complex operations into clear,
+            reliable digital workflows—from customer-facing websites to internal
+            portals and automation tools.
           </p>
           <p>
-            I am particularly interested in projects where a manual, complex, or
-            inefficient workflow can be transformed into a clear digital system.
+            My focus is solving the business problem behind the interface:
+            reducing manual work, improving visibility, and helping teams make
+            better use of their information.
           </p>
           <p>
-            My experience includes business websites, administrative portals,
-            dashboard interfaces, IT asset workflows, Windows environments, and
-            automation-focused development.
+            I combine responsive development, internal system design, AI-powered
+            workflows, and practical automation to support meaningful digital
+            transformation without unnecessary complexity.
           </p>
         </Reveal>
         <Reveal className="capability-index">
