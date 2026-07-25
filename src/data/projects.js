@@ -29,7 +29,7 @@ export const projects = [
       "Framer Motion",
     ],
     image: "/images/panther-x-vision.jpg",
-    projectUrl: null,
+    projectUrl: "https://pantherxvision.com",
     featured: true,
     year: "2026",
   },
