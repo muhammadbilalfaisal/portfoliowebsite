@@ -122,6 +122,7 @@ export const contact = {
   email: "mailto:hello@example.com",
   github: "https://github.com/username",
   linkedin: "https://www.linkedin.com/in/username",
+  instagram: "https://www.instagram.com/username/",
   whatsapp: "https://wa.me/1234567890",
 };
 ```

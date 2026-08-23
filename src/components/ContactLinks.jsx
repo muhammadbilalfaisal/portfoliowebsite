@@ -5,6 +5,7 @@ const methods = [
   ["Email", contact.email],
   ["GitHub", contact.github],
   ["LinkedIn", contact.linkedin],
+  ["Instagram", contact.instagram],
   ["WhatsApp", contact.whatsapp],
 ];
 
