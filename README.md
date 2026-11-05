@@ -2,6 +2,8 @@
 
 A React and Vite portfolio website for a Web & Business Systems Developer. Content is organized into reusable components and configuration files so projects, contact methods, images, and documents can be updated without redesigning the website.
 
+The visual system uses a warm editorial paper surface, dark olive feature sections, restrained 2.5D depth, and centralized spring-smoothed pointer interactions. Mouse-driven depth is disabled on touch devices and under `prefers-reduced-motion`.
+
 ## Getting started
 
 Install the dependencies and start the local development server:
@@ -48,12 +50,14 @@ Upload the current project screenshots using these paths:
 public/images/panther-x-vision.jpg
 public/images/legacy-chamber.jpg
 public/images/adpilot-ai.jpg
+public/images/nisaain.png
+public/images/zbwear.png
 ```
 
 Recommended screenshot settings:
 
 - Approximately 1600 × 1000 pixels
-- A 16:10 aspect ratio
+- Preserve the source image's natural aspect ratio
 - JPG, PNG, or WebP format
 - Compressed for web delivery
 - Lowercase filenames without spaces
@@ -84,6 +88,8 @@ Each project uses this structure:
   performance: "Responsive or performance-focused improvements.",
   technologies: ["React", "JavaScript", "CSS"],
   image: "/images/new-project.jpg",
+  imageWidth: 1600,
+  imageHeight: 900,
   projectUrl: "https://example.com",
   featured: true,
   year: "2026",
@@ -163,6 +169,15 @@ src/App.jsx                    Page section order
 src/data/projects.js          Case-study content and live URLs
 src/data/contact.js           Contact methods
 src/components/Hero.jsx       Hero content and technical visual
+src/hooks/useMousePosition.jsx                 Centralized pointer MotionValues
+src/hooks/useMediaQuery.js                     Pointer and responsive capability checks
+src/components/effects/MouseParallax.jsx       Shared spring-smoothed parallax layer
+src/components/effects/ScrollParallax.jsx      Subtle scroll-driven depth
+src/components/effects/InteractivePaperBackground.jsx  Paper and contour layers
+src/components/effects/CustomCursor.jsx        Desktop dot and delayed cursor ring
+src/components/ui/Interactive3DCard.jsx        Relative-pointer 2.5D card interaction
+src/components/ui/MagneticButton.jsx           Restrained CTA attraction
+src/components/Marquee.jsx         Editorial section ticker
 src/components/About.jsx      About section
 src/components/Process.jsx    Development process
 src/components/Solutions.jsx  Services and trust signals

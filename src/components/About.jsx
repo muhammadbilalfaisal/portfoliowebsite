@@ -29,9 +29,9 @@ export default function About() {
         </Reveal>
         <Reveal className="about-copy" delay={0.1}>
           <p className="lead">
-            I build business systems that turn complex operations into clear,
-            reliable digital workflows—from customer-facing websites to internal
-            portals and automation tools.
+            I develop practical digital solutions for businesses and
+            organizations, combining web development, internal system design, IT
+            operations, and automation.
           </p>
           <p>
             My focus is solving the business problem behind the interface:
@@ -39,9 +39,9 @@ export default function About() {
             better use of their information.
           </p>
           <p>
-            I combine responsive development, internal system design, AI-powered
-            workflows, and practical automation to support meaningful digital
-            transformation without unnecessary complexity.
+            My experience includes business websites, administrative portals,
+            dashboard interfaces, IT asset workflows, Windows environments, and
+            automation-focused development.
           </p>
         </Reveal>
         <Reveal className="capability-index">

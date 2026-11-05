@@ -10,6 +10,8 @@ export default function ProfileImage() {
         <img
           src="/images/profile.jpg"
           alt="Bilal, Web and Business Systems Developer"
+          width="1254"
+          height="1254"
           loading="lazy"
           onError={() => setMissing(true)}
         />

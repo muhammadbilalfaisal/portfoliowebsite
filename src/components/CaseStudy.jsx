@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ProjectImage from "./ProjectImage";
 import TechnologyBadge from "./TechnologyBadge";
+import Interactive3DCard from "./ui/Interactive3DCard";
 
 const reveal = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
@@ -16,7 +17,16 @@ export default function CaseStudy({ project, index }) {
       viewport={{ once: true, amount: 0.18 }}
       transition={{ staggerChildren: reducedMotion ? 0 : 0.09 }}
     >
-      <ProjectImage project={project} number={number} />
+      <Interactive3DCard
+        className="case-image-depth"
+        intensity={12}
+        maxRotate={4}
+        depth={28}
+        scale={1.018}
+        cursorLabel="VIEW"
+      >
+        <ProjectImage project={project} number={number} />
+      </Interactive3DCard>
       <motion.div className="case-content" variants={reveal}>
         <div className="case-meta">
           <span>{project.category}</span>

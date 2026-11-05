@@ -11,7 +11,7 @@ export default function Footer() {
           href="#home"
           onClick={createSectionClickHandler("home")}
         >
-          BI<span>LAL</span>
+          BILAL<span>HUSTLE</span>
         </a>
         <p>Web & Business Systems Developer</p>
       </div>

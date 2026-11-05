@@ -160,7 +160,7 @@ export default function Navbar() {
         aria-label="Bilal, home"
         onClick={(event) => handleDesktopNavigation(event, "home")}
       >
-        BI<span>LAL</span>
+        BILAL<span>HUSTLE</span>
       </a>
       <nav className="desktop-nav" aria-label="Main navigation">
         {links.map((link) => {

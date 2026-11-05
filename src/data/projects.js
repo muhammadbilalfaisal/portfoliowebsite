@@ -29,6 +29,8 @@ export const projects = [
       "Framer Motion",
     ],
     image: "/images/panther-x-vision.jpg",
+    imageWidth: 1919,
+    imageHeight: 1079,
     projectUrl: "https://pantherxvision.com",
     featured: true,
     year: "2026",
@@ -62,6 +64,8 @@ export const projects = [
       "Framer Motion",
     ],
     image: "/images/legacy-chamber.jpg",
+    imageWidth: 1919,
+    imageHeight: 1079,
     projectUrl: null,
     featured: true,
     year: "2026",
@@ -95,7 +99,67 @@ export const projects = [
       "Framer Motion",
     ],
     image: "/images/adpilot-ai.jpg",
+    imageWidth: 1919,
+    imageHeight: 1079,
     projectUrl: null,
+    featured: true,
+    year: "2026",
+  },
+  {
+    id: "nisaain",
+    title: "NisaaIn",
+    category: "Professional Networking Platform",
+    description:
+      "Built a responsive digital presence for a women-focused professional network where members can build trusted relationships, share their work, and grow their careers together.",
+    challenge:
+      "Present a new professional community with enough clarity and trust to explain its purpose, safety principles, and value to prospective founding members.",
+    solution:
+      "Developed a focused Next.js experience with clear community positioning, intentional onboarding paths, safety messaging, and responsive layouts across devices.",
+    impact:
+      "A clear platform narrative that makes the network's purpose, audience, and community model immediately understandable.",
+    achievements: [
+      "Focused founding-community journey",
+      "Trust and safety communication",
+      "Responsive professional-network experience",
+    ],
+    result:
+      "A production-ready website that gives NisaaIn a credible foundation for community discovery and member acquisition.",
+    performance:
+      "Responsive Next.js implementation with structured content and optimized first-party visual assets.",
+    technologies: ["Next.js", "React", "JavaScript", "CSS", "Responsive UI"],
+    image: "/images/nisaain.png",
+    imageWidth: 1731,
+    imageHeight: 909,
+    projectUrl: "https://nisaain.com/",
+    featured: true,
+    year: "2026",
+  },
+  {
+    id: "zbwear",
+    title: "ZB Wear",
+    category: "Fashion E-commerce Store",
+    description:
+      "Built a complete Shopify storefront for a Pakistan-based men's clothing brand, presenting its polo collections through a polished, product-led shopping experience.",
+    challenge:
+      "Organize the brand, collections, product variants, promotions, and purchasing journey into a storefront that feels premium and remains easy to use.",
+    solution:
+      "Developed a responsive Shopify experience with collection discovery, product pages, search, customer accounts, cart and checkout flows, policy content, and direct support access.",
+    impact:
+      "A unified online store that connects brand presentation, product discovery, and purchasing in one customer journey.",
+    achievements: [
+      "Responsive product catalog",
+      "Cart and checkout experience",
+      "Product variants and promotional merchandising",
+    ],
+    result:
+      "A live e-commerce storefront ready to support product launches, promotions, customer accounts, and nationwide ordering.",
+    performance:
+      "Responsive Shopify theme implementation with optimized first-party product and campaign imagery.",
+    technologies: ["Shopify", "Liquid", "JavaScript", "CSS", "E-commerce"],
+    image: "/images/zbwear.png",
+    imageWidth: 1672,
+    imageHeight: 941,
+    projectUrl: "https://zbwear.com/",
     featured: true,
     year: "2026",
   },

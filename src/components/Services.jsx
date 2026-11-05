@@ -1,9 +1,12 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code2, PanelsTopLeft, Workflow } from "lucide-react";
 import Reveal from "./Reveal";
+import Interactive3DCard from "./ui/Interactive3DCard";
+
 const services = [
   {
+    icon: Code2,
     title: "Business Websites",
-    desc: "Professional, responsive websites designed to strengthen business credibility, clearly present services, and make it easier for customers to connect.",
+    desc: "Professional, responsive websites that strengthen business credibility, present services clearly, and make it easier for customers to connect.",
     caps: [
       "Business Websites",
       "Landing Pages",
@@ -11,8 +14,10 @@ const services = [
       "Responsive Development",
       "Inquiry Workflows",
     ],
+    angle: "-1.4deg",
   },
   {
+    icon: PanelsTopLeft,
     title: "Internal Portals & Dashboards",
     desc: "Structured internal web systems for organizations that need better control over users, departments, workflows, data, and administrative processes.",
     caps: [
@@ -22,10 +27,12 @@ const services = [
       "Management Workflows",
       "Internal Tools",
     ],
+    angle: "1deg",
   },
   {
+    icon: Workflow,
     title: "IT Automation & System Solutions",
-    desc: "Practical automation and system solutions focused on reducing repetitive IT work and improving how technical information and processes are managed.",
+    desc: "Practical automation and system solutions that reduce repetitive IT work and improve how technical information and processes are managed.",
     caps: [
       "IT Asset Workflows",
       "PC Inventory Automation",
@@ -33,41 +40,58 @@ const services = [
       "Data Collection Automation",
       "Process Automation",
     ],
+    angle: "-0.7deg",
   },
 ];
+
 export default function Services() {
   return (
-    <section id="services" className="section services">
+    <section id="services" className="section services editorial-services">
       <Reveal>
         <div className="section-kicker">
           <span>02</span> Services / Expertise
         </div>
         <div className="section-title-row">
-          <h2>WHAT I BUILD</h2>
+          <h2>
+            IDEAS INTO
+            <br />
+            <em>WORKING SYSTEMS.</em>
+          </h2>
           <p>
             Focused digital solutions for the parts of a business that need to
             work better.
           </p>
         </div>
       </Reveal>
-      <div className="service-list">
-        {services.map((s, i) => (
-          <Reveal key={s.title} delay={i * 0.06}>
-            <article className="service">
-              <div className="service-no">0{i + 1}</div>
-              <div>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-              </div>
-              <ul>
-                {s.caps.map((c) => (
-                  <li key={c}>{c}</li>
-                ))}
-              </ul>
-              <ArrowUpRight className="service-arrow" />
-            </article>
-          </Reveal>
-        ))}
+      <div className="editorial-service-grid">
+        {services.map((service, index) => {
+          const Icon = service.icon;
+          return (
+            <Reveal key={service.title} delay={index * 0.055}>
+              <Interactive3DCard
+                className="service-card"
+                intensity={9}
+                maxRotate={3.5}
+                depth={18}
+                scale={1.015}
+                cursorLabel="EXPLORE"
+              >
+                <article style={{ "--card-angle": service.angle }}>
+                  <Icon aria-hidden="true" />
+                  <span className="service-no">0{index + 1}</span>
+                  <h3>{service.title}</h3>
+                  <p>{service.desc}</p>
+                  <ul>
+                    {service.caps.map((capability) => (
+                      <li key={capability}>{capability}</li>
+                    ))}
+                  </ul>
+                  <ArrowUpRight className="service-arrow" />
+                </article>
+              </Interactive3DCard>
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );

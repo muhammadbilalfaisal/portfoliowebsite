@@ -7,23 +7,31 @@ export default function ProjectImage({ project, number }) {
   return (
     <motion.div
       className="case-image-wrap"
+      style={{
+        aspectRatio: `${project.imageWidth ?? 1919} / ${project.imageHeight ?? 1079}`,
+      }}
       variants={{
         hidden: { opacity: 0, scale: 0.97 },
         visible: { opacity: 1, scale: 1 },
       }}
     >
       {!missing && (
-        <motion.img
-          src={project.image}
-          alt={`${project.title} website preview`}
-          loading="lazy"
-          onError={() => setMissing(true)}
-          whileHover={reducedMotion ? undefined : { scale: 1.035 }}
-          transition={{
-            duration: reducedMotion ? 0 : 0.65,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        />
+        <div className="case-image-media">
+          <motion.img
+            src={project.image}
+            alt={`${project.title} website preview`}
+            width={project.imageWidth ?? 1919}
+            height={project.imageHeight ?? 1079}
+            loading="lazy"
+            decoding="async"
+            onError={() => setMissing(true)}
+            whileHover={reducedMotion ? undefined : { scale: 1.015 }}
+            transition={{
+              duration: reducedMotion ? 0 : 0.65,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          />
+        </div>
       )}
       {missing && (
         <div className="case-image-placeholder">

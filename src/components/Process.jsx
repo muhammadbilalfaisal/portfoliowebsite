@@ -4,9 +4,14 @@ import Reveal from "./Reveal";
 
 const steps = [
   ["Discovery", "Understand the business, users, and workflow."],
-  ["Planning", "Define architecture, scope, and implementation strategy."],
-  ["Development", "Build responsive, maintainable, and scalable solutions."],
-  ["Delivery", "Deploy, optimize, and provide ongoing support when required."],
+  ["Design", "Shape the information, experience, and visual direction."],
+  ["Build", "Develop responsive, maintainable, and scalable solutions."],
+  [
+    "Automate",
+    "Connect the workflows that remove repetitive operational work.",
+  ],
+  ["Launch", "Deploy, test, and prepare the solution for real use."],
+  ["Optimize", "Measure, refine, and support the system as it evolves."],
 ];
 
 export default function Process() {
