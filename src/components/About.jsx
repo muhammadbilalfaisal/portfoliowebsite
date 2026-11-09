@@ -14,7 +14,7 @@ export default function About() {
               <em>BILAL FAISAL</em>
             </h2>
             <p>
-              Web Developer · AI Automation Developer · IT Systems Professional
+              ENTREPRENEUR · FOUNDER · TECHNOLOGIST
             </p>
           </div>
 
