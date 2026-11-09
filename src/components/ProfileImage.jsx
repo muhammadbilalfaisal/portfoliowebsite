@@ -8,7 +8,7 @@ export default function ProfileImage() {
     <div className="profile-frame">
       {!missing ? (
         <img
-          src="/images/profile.jpg"
+          src="/images/profile-optimized.jpg"
           alt="Bilal, Web and Business Systems Developer"
           width="1254"
           height="1254"
@@ -21,7 +21,7 @@ export default function ProfileImage() {
           aria-label="Professional headshot placeholder"
         >
           <UserRound aria-hidden="true" />
-          <span>/images/profile.jpg</span>
+          <span>/images/profile-optimized.jpg</span>
         </div>
       )}
     </div>

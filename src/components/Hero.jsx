@@ -61,7 +61,7 @@ export default function Hero() {
             data-cursor="EXPLORE"
           >
             <img
-              src="/images/profile.jpg"
+              src="/images/profile-optimized.jpg"
               alt="Muhammad Bilal Faisal, Web and Business Systems Developer"
               width="1254"
               height="1254"
