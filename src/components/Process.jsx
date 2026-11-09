@@ -1,65 +1,96 @@
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import Reveal from "./Reveal";
 
-const steps = [
-  ["Discovery", "Understand the business, users, and workflow."],
-  ["Design", "Shape the information, experience, and visual direction."],
-  ["Build", "Develop responsive, maintainable, and scalable solutions."],
+const focusAreas = [
+  "Business websites and landing pages",
+  "Administrative portals and dashboards",
+  "AI-assisted workflows and API integrations",
+  "IT asset and operational automation",
+];
+
+const projectExperience = [
   [
-    "Automate",
-    "Connect the workflows that remove repetitive operational work.",
+    "Digital platforms",
+    "Professional networks, SaaS products, and internal systems.",
   ],
-  ["Launch", "Deploy, test, and prepare the solution for real use."],
-  ["Optimize", "Measure, refine, and support the system as it evolves."],
+  [
+    "Commerce",
+    "Responsive product discovery, merchandising, cart, and checkout.",
+  ],
+  [
+    "Business presence",
+    "Editorial websites built around authority and conversion.",
+  ],
+];
+
+const steps = [
+  ["Discover", "Understand the business, users, and current workflow."],
+  ["Define", "Set scope, information structure, and technical direction."],
+  ["Design", "Shape the interface, hierarchy, and responsive behavior."],
+  ["Build", "Develop maintainable components and connected workflows."],
+  [
+    "Validate",
+    "Test usability, responsiveness, performance, and accessibility.",
+  ],
+  ["Deliver", "Deploy, document, and support the working solution."],
 ];
 
 export default function Process() {
-  const timelineRef = useRef(null);
-  const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start 75%", "end 55%"],
-  });
-  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24 });
-
   return (
-    <section id="process" className="section process">
+    <section id="process" className="section professional-background">
       <Reveal>
-        <div className="section-kicker">
-          <span>04</span> Process / Method
+        <div className="background-heading">
+          <span className="micro-label">Professional background / 04</span>
+          <h2>TECHNICAL PRACTICE, APPLIED TO BUSINESS.</h2>
         </div>
-        <h2>HOW I WORK</h2>
       </Reveal>
-      <div className="process-grid">
-        <div className="process-intro">
-          A clear, practical path from problem to working system.
-        </div>
-        <div className="process-steps" ref={timelineRef}>
-          <motion.div
-            className="process-progress"
-            style={{ scaleY: reducedMotion ? scrollYProgress : progress }}
-            aria-hidden="true"
-          />
-          {steps.map((step, index) => (
-            <Reveal key={step[0]} delay={reducedMotion ? 0 : index * 0.05}>
-              <article>
-                <motion.div
-                  className="step-marker"
-                  whileInView={
-                    reducedMotion ? undefined : { scale: [1, 1.08, 1] }
-                  }
-                  viewport={{ once: true, amount: 0.8 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <span>0{index + 1}</span>
-                </motion.div>
-                <h3>{step[0]}</h3>
-                <p>{step[1]}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+
+      <div className="background-columns">
+        <Reveal>
+          <article className="background-column">
+            <span className="column-number">01</span>
+            <h3>Professional focus</h3>
+            <p>
+              Web development, AI automation, and IT systems work centered on
+              practical business outcomes.
+            </p>
+            <ul>
+              {focusAreas.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <article className="background-column">
+            <span className="column-number">02</span>
+            <h3>Applied experience</h3>
+            {projectExperience.map(([title, description]) => (
+              <div className="experience-entry" key={title}>
+                <h4>{title}</h4>
+                <p>{description}</p>
+              </div>
+            ))}
+          </article>
+        </Reveal>
+
+        <Reveal delay={0.16}>
+          <article className="background-column process-column">
+            <span className="column-number">03</span>
+            <h3>Development process</h3>
+            <ol>
+              {steps.map(([title, description], index) => (
+                <li key={title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h4>{title}</h4>
+                    <p>{description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </article>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,20 +1,26 @@
+import { ArrowUp } from "lucide-react";
 import { createSectionClickHandler } from "../utils/scrollToSection";
 
-const links = ["Home", "About", "Services", "Work", "Process", "Contact"];
+const links = ["About", "Services", "Work", "Process", "Contact"];
 
 export default function Footer() {
   return (
-    <footer>
-      <div>
+    <footer className="editorial-footer">
+      <div className="footer-brand">
         <a
-          className="wordmark"
           href="#home"
+          className="footer-monogram"
+          aria-label="Back to top"
           onClick={createSectionClickHandler("home")}
         >
-          BILAL<span>HUSTLE</span>
+          <span>B</span>F
         </a>
-        <p>Web & Business Systems Developer</p>
+        <div>
+          <strong>BilalHustle</strong>
+          <p>Web development · AI automation · IT systems</p>
+        </div>
       </div>
+
       <nav aria-label="Footer navigation">
         {links.map((link) => (
           <a
@@ -26,9 +32,18 @@ export default function Footer() {
           </a>
         ))}
       </nav>
+
+      <a
+        href="#home"
+        className="back-to-top"
+        onClick={createSectionClickHandler("home")}
+      >
+        Back to top <ArrowUp size={14} />
+      </a>
+
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} Bilal. All rights reserved.</span>
-        <span>DESIGNED FOR CLARITY — BUILT FOR USE</span>
+        <span>© {new Date().getFullYear()} Muhammad Bilal Faisal</span>
+        <span>Karachi, Pakistan · PKT / UTC+5</span>
       </div>
     </footer>
   );

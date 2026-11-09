@@ -1,97 +1,57 @@
-import { ArrowUpRight, Code2, PanelsTopLeft, Workflow } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
-import Interactive3DCard from "./ui/Interactive3DCard";
 
 const services = [
   {
-    icon: Code2,
     title: "Business Websites",
-    desc: "Professional, responsive websites that strengthen business credibility, present services clearly, and make it easier for customers to connect.",
-    caps: [
-      "Business Websites",
-      "Landing Pages",
-      "Website Redesign",
-      "Responsive Development",
-      "Inquiry Workflows",
-    ],
-    angle: "-1.4deg",
+    description:
+      "Responsive websites and landing pages that establish credibility, explain services clearly, and create direct inquiry pathways.",
+    capabilities: "React · Responsive UI · Landing Pages · Redesign",
   },
   {
-    icon: PanelsTopLeft,
-    title: "Internal Portals & Dashboards",
-    desc: "Structured internal web systems for organizations that need better control over users, departments, workflows, data, and administrative processes.",
-    caps: [
-      "Admin Dashboards",
-      "Role-Based Systems",
-      "Staff Portals",
-      "Management Workflows",
-      "Internal Tools",
-    ],
-    angle: "1deg",
+    title: "Portals & Dashboards",
+    description:
+      "Structured internal interfaces for users, teams, departments, data, and administrative workflows.",
+    capabilities: "Admin UI · Role-Based Systems · Internal Tools",
   },
   {
-    icon: Workflow,
-    title: "IT Automation & System Solutions",
-    desc: "Practical automation and system solutions that reduce repetitive IT work and improve how technical information and processes are managed.",
-    caps: [
-      "IT Asset Workflows",
-      "PC Inventory Automation",
-      "Windows Environment Tasks",
-      "Data Collection Automation",
-      "Process Automation",
-    ],
-    angle: "-0.7deg",
+    title: "Automation & Systems",
+    description:
+      "Practical technical workflows that reduce repetitive work and improve how operational information is managed.",
+    capabilities: "AI Workflows · APIs · IT Automation · Data Collection",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="section services editorial-services">
+    <section id="services" className="section service-index-section">
       <Reveal>
-        <div className="section-kicker">
-          <span>02</span> Services / Expertise
-        </div>
-        <div className="section-title-row">
-          <h2>
-            IDEAS INTO
-            <br />
-            <em>WORKING SYSTEMS.</em>
-          </h2>
+        <div className="editorial-heading-row">
+          <div>
+            <span className="micro-label">Services / 02</span>
+            <h2>WHAT I BUILD</h2>
+          </div>
           <p>
-            Focused digital solutions for the parts of a business that need to
-            work better.
+            Focused digital systems for the parts of a business that need to
+            communicate, operate, and scale more clearly.
           </p>
         </div>
       </Reveal>
-      <div className="editorial-service-grid">
-        {services.map((service, index) => {
-          const Icon = service.icon;
-          return (
-            <Reveal key={service.title} delay={index * 0.055}>
-              <Interactive3DCard
-                className="service-card"
-                intensity={9}
-                maxRotate={3.5}
-                depth={18}
-                scale={1.015}
-                cursorLabel="EXPLORE"
-              >
-                <article style={{ "--card-angle": service.angle }}>
-                  <Icon aria-hidden="true" />
-                  <span className="service-no">0{index + 1}</span>
-                  <h3>{service.title}</h3>
-                  <p>{service.desc}</p>
-                  <ul>
-                    {service.caps.map((capability) => (
-                      <li key={capability}>{capability}</li>
-                    ))}
-                  </ul>
-                  <ArrowUpRight className="service-arrow" />
-                </article>
-              </Interactive3DCard>
-            </Reveal>
-          );
-        })}
+
+      <div className="service-index">
+        {services.map((service, index) => (
+          <Reveal key={service.title} delay={index * 0.06}>
+            <article>
+              <span className="service-index-no">0{index + 1}</span>
+              <div>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </div>
+              <small>{service.capabilities}</small>
+              <ArrowUpRight aria-hidden="true" />
+            </article>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

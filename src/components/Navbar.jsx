@@ -14,13 +14,12 @@ import {
 } from "../utils/scrollToSection";
 
 const links = ["Home", "About", "Services", "Work", "Process", "Contact"];
-const desktopQuery = "(min-width: 761px)";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [pendingSection, setPendingSection] = useState(null);
-  const [navbarHeight, setNavbarHeight] = useState(78);
+  const [navbarHeight, setNavbarHeight] = useState(110);
   const navbarRef = useRef(null);
   const menuButtonRef = useRef(null);
   const menuRef = useRef(null);
@@ -38,7 +37,7 @@ export default function Navbar() {
     if (!navbar) return undefined;
     const updateHeight = () => {
       const height = getNavbarHeight(navbar);
-      setNavbarHeight(height);
+      setNavbarHeight((current) => (current === height ? current : height));
       document.documentElement.style.setProperty("--nav-height", `${height}px`);
       const sectionId = window.location.hash.slice(1);
       if (sectionId && !initialHashAligned.current) {
@@ -58,25 +57,16 @@ export default function Navbar() {
     const sections = links
       .map((link) => document.getElementById(link.toLowerCase()))
       .filter(Boolean);
-    const visibleSections = new Map();
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting)
-            visibleSections.set(entry.target.id, entry.target);
-          else visibleSections.delete(entry.target.id);
-        });
-        const marker = navbarHeight + SECTION_SPACING;
-        const [closest] = [...visibleSections.values()].sort(
-          (a, b) =>
-            Math.abs(a.getBoundingClientRect().top - marker) -
-            Math.abs(b.getBoundingClientRect().top - marker),
-        );
-        if (closest) setActiveSection(closest.id);
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveSection(visible[0].target.id);
       },
       {
-        rootMargin: `-${navbarHeight + SECTION_SPACING}px 0px -62% 0px`,
-        threshold: [0, 0.05, 0.2, 0.5],
+        rootMargin: `-${navbarHeight + SECTION_SPACING}px 0px -58% 0px`,
+        threshold: [0.08, 0.25, 0.5],
       },
     );
     sections.forEach((section) => observer.observe(section));
@@ -86,83 +76,77 @@ export default function Navbar() {
   useEffect(() => {
     if (!open) return undefined;
     const previousOverflow = document.body.style.overflow;
-    const desktopMedia = window.matchMedia(desktopQuery);
     document.body.style.overflow = "hidden";
     requestAnimationFrame(() => menuRef.current?.querySelector("a")?.focus());
-
-    const closeAndRestoreFocus = () => {
-      setOpen(false);
-      requestAnimationFrame(() => menuButtonRef.current?.focus());
-    };
-    const handleDesktop = (event) => {
-      if (event.matches) closeAndRestoreFocus();
-    };
-    const handlePointerDown = (event) => {
-      if (
-        !menuRef.current?.contains(event.target) &&
-        !menuButtonRef.current?.contains(event.target)
-      )
-        closeAndRestoreFocus();
-    };
+    const close = () => setOpen(false);
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") closeAndRestoreFocus();
-      if (event.key !== "Tab") return;
-      const focusable = [
-        ...menuRef.current.querySelectorAll("a[href], button:not([disabled])"),
-      ];
-      const first = focusable[0];
-      const last = focusable.at(-1);
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last?.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first?.focus();
-      }
+      if (event.key === "Escape") close();
     };
-
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("pointerdown", handlePointerDown);
-    desktopMedia.addEventListener("change", handleDesktop);
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("pointerdown", handlePointerDown);
-      desktopMedia.removeEventListener("change", handleDesktop);
     };
   }, [open]);
 
-  const handleDesktopNavigation = (event, sectionId) => {
+  const navigate = (event, sectionId) => {
     event.preventDefault();
     scrollToSection(sectionId, navbarRef.current);
   };
-  const handleMobileNavigation = (event, sectionId) => {
+  const navigateMobile = (event, sectionId) => {
     event.preventDefault();
     setPendingSection(sectionId);
     setOpen(false);
   };
-  const handleMenuExit = () => {
+  const finishMobileNavigation = () => {
     if (!pendingSection) return;
     scrollToSection(pendingSection, navbarRef.current);
     setPendingSection(null);
+    requestAnimationFrame(() => menuButtonRef.current?.focus());
   };
 
   return (
-    <header className="nav" ref={navbarRef}>
+    <header className="nav editorial-nav" ref={navbarRef}>
       <motion.div
         className="scroll-progress"
         style={{ scaleX: reducedMotion ? scrollYProgress : smoothProgress }}
         aria-hidden="true"
       />
-      <a
-        className="wordmark"
-        href="#home"
-        aria-label="Bilal, home"
-        onClick={(event) => handleDesktopNavigation(event, "home")}
+      <div className="header-primary">
+        <div className="header-role">
+          <span>Creative Developer</span>
+          <small>Portfolio / 2026</small>
+        </div>
+        <a
+          className="header-monogram"
+          href="#home"
+          aria-label="BilalHustle, home"
+          onClick={(event) => navigate(event, "home")}
+        >
+          <span>B</span>F
+        </a>
+        <div className="header-status">
+          <span>Karachi, Pakistan</span>
+          <a href="#contact" onClick={(event) => navigate(event, "contact")}>
+            Available for freelance
+          </a>
+        </div>
+        <button
+          ref={menuButtonRef}
+          className="menu-button"
+          onClick={() => setOpen((current) => !current)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+        >
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+
+      <nav
+        className="desktop-nav editorial-nav-links"
+        aria-label="Main navigation"
       >
-        BILAL<span>HUSTLE</span>
-      </a>
-      <nav className="desktop-nav" aria-label="Main navigation">
         {links.map((link) => {
           const id = link.toLowerCase();
           return (
@@ -171,7 +155,7 @@ export default function Navbar() {
               href={`#${id}`}
               className={activeSection === id ? "active" : undefined}
               aria-current={activeSection === id ? "page" : undefined}
-              onClick={(event) => handleDesktopNavigation(event, id)}
+              onClick={(event) => navigate(event, id)}
             >
               {link}
             </a>
@@ -180,60 +164,36 @@ export default function Navbar() {
         <a
           className="nav-cta"
           href="#contact"
-          onClick={(event) => handleDesktopNavigation(event, "contact")}
+          onClick={(event) => navigate(event, "contact")}
         >
-          Let&apos;s Talk <ArrowUpRight size={15} />
+          Get in touch <ArrowUpRight size={14} />
         </a>
       </nav>
-      <button
-        ref={menuButtonRef}
-        className="menu-button"
-        onClick={() => setOpen((current) => !current)}
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        aria-controls="mobile-navigation"
-      >
-        {open ? <X /> : <Menu />}
-      </button>
-      <AnimatePresence onExitComplete={handleMenuExit}>
+
+      <AnimatePresence onExitComplete={finishMobileNavigation}>
         {open && (
           <motion.nav
             id="mobile-navigation"
             ref={menuRef}
             className="mobile-menu"
             aria-label="Mobile navigation"
-            initial={
-              reducedMotion ? { opacity: 0 } : { clipPath: "inset(0 0 100% 0)" }
-            }
-            animate={
-              reducedMotion ? { opacity: 1 } : { clipPath: "inset(0 0 0% 0)" }
-            }
-            exit={
-              reducedMotion ? { opacity: 0 } : { clipPath: "inset(0 0 100% 0)" }
-            }
-            transition={{
-              duration: reducedMotion ? 0 : 0.45,
-              ease: [0.76, 0, 0.24, 1],
-            }}
+            initial={reducedMotion ? { opacity: 0 } : { y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: "-100%" }}
+            transition={{ duration: reducedMotion ? 0 : 0.42 }}
           >
             {links.map((link, index) => {
               const id = link.toLowerCase();
               return (
-                <motion.a
+                <a
                   key={link}
                   href={`#${id}`}
                   className={activeSection === id ? "active" : undefined}
-                  aria-current={activeSection === id ? "page" : undefined}
-                  onClick={(event) => handleMobileNavigation(event, id)}
-                  initial={reducedMotion ? false : { opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    delay: reducedMotion ? 0 : 0.12 + index * 0.04,
-                  }}
+                  onClick={(event) => navigateMobile(event, id)}
                 >
                   <span>0{index + 1}</span>
                   {link}
-                </motion.a>
+                </a>
               );
             })}
           </motion.nav>

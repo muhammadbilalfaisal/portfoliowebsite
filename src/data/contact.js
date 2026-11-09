@@ -4,5 +4,5 @@ export const contact = {
   github: "https://github.com/muhammadbilalfaisal",
   linkedin: "https://www.linkedin.com/in/bilal-faisal99/",
   instagram: "https://www.instagram.com/bilalhustle/",
-  whatsapp: "https://wa.me/+923482957792",
+  whatsapp: "https://wa.me/+923391033987",
 };

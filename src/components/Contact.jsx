@@ -84,17 +84,17 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section contact">
+    <section id="contact" className="section contact editorial-contact">
       <Reveal>
         <div className="section-kicker">
-          <span>07</span> Contact / Start a Conversation
+          <span>06</span> Contact / Start a Conversation
         </div>
         <h2>
-          LET&apos;S BUILD SOMETHING
+          LET&apos;S CREATE
           <br />
-          THAT SOLVES A REAL
+          SOMETHING
           <br />
-          <em>BUSINESS PROBLEM.</em>
+          <em>EXTRAORDINARY.</em>
         </h2>
       </Reveal>
       <div className="contact-grid">
@@ -110,7 +110,7 @@ export default function Contact() {
               className="button primary"
               onClick={createSectionClickHandler("contact-form")}
             >
-              Start a Conversation <ArrowUpRight size={17} />
+              Get in touch <ArrowUpRight size={17} />
             </a>
             <dl className="contact-facts">
               <div>

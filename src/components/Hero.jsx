@@ -1,149 +1,129 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { projects } from "../data/projects";
 import { createSectionClickHandler } from "../utils/scrollToSection";
 import MouseParallax from "./effects/MouseParallax";
-import ScrollParallax from "./effects/ScrollParallax";
 import MagneticButton from "./ui/MagneticButton";
 
+const title = "PORTFOLIO";
+
 export default function Hero() {
-  const reduced = useReducedMotion();
+  const reducedMotion = useReducedMotion();
+  const completedProjects = projects.length;
+
   return (
-    <section className="hero editorial-hero" id="home">
-      <MouseParallax
-        intensity={2.5}
-        invert
-        depth={-12}
-        spring={{ stiffness: 68, damping: 25, mass: 0.95 }}
-        className="hero-meta"
-      >
-        <span>Web &amp; Business Systems Developer</span>
-        <span>Karachi · PKT / UTC+5</span>
-      </MouseParallax>
-      <MouseParallax
-        intensity={7}
-        depth={8}
-        spring={{ stiffness: 82, damping: 23, mass: 0.85 }}
-        className="hero-title-wrap"
-      >
-        <p className="eyebrow">
-          Web development · Business systems · Automation
-        </p>
-        <h1 aria-label="Bilal">
-          {["B", "I", "L", "A", "L"].map((letter, index) => (
-            <span className="headline-mask" key={`${letter}-${index}`}>
-              <motion.span
-                initial={reduced ? false : { y: "110%", rotate: 2 }}
-                animate={{ y: 0, rotate: 0 }}
-                transition={{
-                  duration: 0.85,
-                  delay: reduced ? 0 : 0.12 + index * 0.055,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                {letter}
-              </motion.span>
-            </span>
-          ))}
-        </h1>
-      </MouseParallax>
-      <ScrollParallax distance={44} className="hero-portrait-scroll">
+    <section className="hero editorial-cover" id="home">
+      <div className="cover-meta cover-meta-left">
+        <span>Creative Developer</span>
+        <span>Portfolio / 2026</span>
+      </div>
+      <div className="cover-meta cover-meta-right">
+        <span>Karachi, Pakistan</span>
+        <span>PKT / UTC+5</span>
+      </div>
+
+      <h1 className="cover-title" aria-label="Portfolio">
+        {title.split("").map((letter, index) => (
+          <span className="headline-mask" key={`${letter}-${index}`}>
+            <motion.span
+              initial={reducedMotion ? false : { y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{
+                duration: reducedMotion ? 0 : 0.9,
+                delay: reducedMotion ? 0 : 0.08 + index * 0.045,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {letter}
+            </motion.span>
+          </span>
+        ))}
+      </h1>
+
+      <div className="cover-portrait-anchor">
         <MouseParallax
-          intensity={19}
-          depth={48}
-          maxRotateX={3.5}
-          maxRotateY={5.5}
-          spring={{ stiffness: 92, damping: 21, mass: 0.78 }}
-          className="hero-portrait-wrap"
+          intensity={14}
+          depth={36}
+          maxRotateX={2}
+          maxRotateY={3}
+          spring={{ stiffness: 90, damping: 22, mass: 0.8 }}
+          className="cover-portrait-wrap"
         >
           <motion.div
-            className="hero-portrait"
-            initial={
-              reduced ? false : { opacity: 0, clipPath: "inset(100% 0 0 0)" }
-            }
-            animate={{ opacity: 1, clipPath: "inset(0 0 0 0)" }}
+            className="cover-portrait"
+            initial={reducedMotion ? false : { opacity: 0, y: 40, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
-              duration: 1,
-              delay: reduced ? 0 : 0.38,
+              duration: reducedMotion ? 0 : 1,
+              delay: reducedMotion ? 0 : 0.35,
               ease: [0.22, 1, 0.36, 1],
             }}
             data-cursor="EXPLORE"
           >
             <img
               src="/images/profile.jpg"
-              alt="Bilal, Web and Business Systems Developer"
+              alt="Muhammad Bilal Faisal, Web and Business Systems Developer"
               width="1254"
               height="1254"
               fetchPriority="high"
             />
           </motion.div>
-          <span className="portrait-stamp">
-            BUILD
-            <br />
-            AUTOMATE
-            <br />
-            GROW
-          </span>
         </MouseParallax>
-      </ScrollParallax>
+      </div>
+
       <motion.div
-        className="hero-intro"
-        initial={reduced ? false : { opacity: 0, x: -18 }}
+        className="cover-note cover-note-left"
+        initial={reducedMotion ? false : { opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: reduced ? 0 : 0.7 }}
+        transition={{ delay: reducedMotion ? 0 : 0.65 }}
+      >
+        <span className="micro-label">What I build</span>
+        <p>Websites, business systems, AI automation, and digital products.</p>
+      </motion.div>
+
+      <motion.div
+        className="cover-note cover-note-right"
+        initial={reducedMotion ? false : { opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: reducedMotion ? 0 : 0.72 }}
       >
         <p>
-          I build responsive business websites, internal portals, admin
-          dashboards, and practical IT automation for organizations that need
-          clearer, more reliable workflows.
+          I design and develop practical digital experiences for businesses and
+          organizations.
         </p>
+        <span className="cover-signature">Bilal Faisal</span>
       </motion.div>
-      <motion.div
-        className="hero-actions"
-        initial={reduced ? false : { opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: reduced ? 0 : 0.78 }}
-      >
+
+      <div className="cover-actions">
         <MagneticButton>
           <a
-            className="button primary"
-            data-cursor="OPEN"
+            className="button cover-primary"
             href="#work"
+            data-cursor="OPEN"
             onClick={createSectionClickHandler("work")}
           >
-            Selected work <ArrowDown size={17} />
+            View selected work <ArrowDown size={16} />
           </a>
         </MagneticButton>
         <MagneticButton>
           <a
-            className="button text-button"
-            data-cursor="OPEN"
+            className="button cover-secondary"
             href="#contact"
+            data-cursor="OPEN"
             onClick={createSectionClickHandler("contact")}
           >
-            Start a project <ArrowUpRight size={17} />
+            Start a project <ArrowUpRight size={16} />
           </a>
         </MagneticButton>
-      </motion.div>
-      <MouseParallax
-        intensity={3.5}
-        axis="x"
-        invert
-        depth={-6}
-        spring={{ stiffness: 65, damping: 25, mass: 1 }}
-        className="hero-disciplines"
-      >
-        <span>01 Business Websites</span>
-        <span>02 Internal Portals</span>
-        <span>03 IT Automation</span>
-      </MouseParallax>
-      <a
-        href="#about"
-        className="scroll-cue"
-        onClick={createSectionClickHandler("about")}
-      >
-        <span>Scroll to explore</span>
-        <ArrowDown size={15} />
-      </a>
+      </div>
+
+      <div className="cover-index" aria-label="Portfolio facts">
+        <span>Web &amp; Business Systems Developer</span>
+        <span>
+          {String(completedProjects).padStart(2, "0")} completed projects
+        </span>
+        <span>Available for freelance projects</span>
+      </div>
     </section>
   );
 }

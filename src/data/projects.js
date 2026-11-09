@@ -128,8 +128,8 @@ export const projects = [
       "Responsive Next.js implementation with structured content and optimized first-party visual assets.",
     technologies: ["Next.js", "React", "JavaScript", "CSS", "Responsive UI"],
     image: "/images/nisaain.png",
-    imageWidth: 1731,
-    imageHeight: 909,
+    imageWidth: 1919,
+    imageHeight: 1079,
     projectUrl: "https://nisaain.com/",
     featured: true,
     year: "2026",
@@ -157,9 +157,38 @@ export const projects = [
       "Responsive Shopify theme implementation with optimized first-party product and campaign imagery.",
     technologies: ["Shopify", "Liquid", "JavaScript", "CSS", "E-commerce"],
     image: "/images/zbwear.png",
-    imageWidth: 1672,
-    imageHeight: 941,
+    imageWidth: 1919,
+    imageHeight: 1079,
     projectUrl: "https://zbwear.com/",
+    featured: true,
+    year: "2026",
+  },
+  {
+    id: "first-response-electric",
+    title: "First Response Electric",
+    category: "Electrical Services Website",
+    description:
+      "Built a responsive business website for a North West electrical contractor, presenting domestic, commercial, and industrial services with clear emergency call-out and telephone contact routes.",
+    challenge:
+      "Present the company’s electrical services clearly while making urgent contact information immediately accessible.",
+    solution:
+      "Created a focused service-led website with prominent telephone calls to action, service information, location details, and responsive layouts.",
+    impact:
+      "A clear online presence that helps customers understand the service offering and contact the business quickly.",
+    achievements: [
+      "Responsive service presentation",
+      "Prominent emergency contact routes",
+      "Clear domestic, commercial, and industrial positioning",
+    ],
+    result:
+      "A live business website structured around service discovery and direct customer enquiries.",
+    performance:
+      "Responsive layouts designed for clear reading and straightforward contact across devices.",
+    technologies: ["Web Development", "Responsive UI", "Business Website"],
+    image: "/images/first-response-electric.png",
+    imageWidth: 1919,
+    imageHeight: 1079,
+    projectUrl: "https://firstresponseelectric.co.uk/",
     featured: true,
     year: "2026",
   },
