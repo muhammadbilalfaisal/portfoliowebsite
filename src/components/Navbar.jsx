@@ -117,18 +117,10 @@ export default function Navbar() {
           <span>Creative Developer</span>
           <small>Portfolio / 2026</small>
         </div>
-        <a
-          className="header-monogram"
-          href="#home"
-          aria-label="BilalHustle, home"
-          onClick={(event) => navigate(event, "home")}
-        >
-          <span>B</span>F
-        </a>
         <div className="header-status">
-          <span>Karachi, Pakistan</span>
+          <span>Pakistan</span>
           <a href="#contact" onClick={(event) => navigate(event, "contact")}>
-            Available for freelance
+            Building ventures · Open to strategic collaborations
           </a>
         </div>
         <button

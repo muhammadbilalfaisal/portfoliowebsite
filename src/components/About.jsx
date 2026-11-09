@@ -1,5 +1,4 @@
 import { MapPin, MonitorCog, Workflow } from "lucide-react";
-import { projects } from "../data/projects";
 import Reveal from "./Reveal";
 
 export default function About() {
@@ -36,13 +35,13 @@ export default function About() {
             <div>
               <MapPin aria-hidden="true" />
               <dt>Location</dt>
-              <dd>Karachi, Pakistan</dd>
+              <dd>Pakistan</dd>
             </div>
             <div>
               <MonitorCog aria-hidden="true" />
               <dt>Completed work</dt>
               <dd>
-                {String(projects.length).padStart(2, "0")} featured projects
+                50+ completed projects
               </dd>
             </div>
             <div>

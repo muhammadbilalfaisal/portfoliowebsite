@@ -123,7 +123,7 @@ export default function Contact() {
               </div>
               <div>
                 <dt>Location</dt>
-                <dd>Karachi, Pakistan</dd>
+                <dd>Pakistan</dd>
               </div>
               <div>
                 <dt>Timezone</dt>

@@ -7,14 +7,6 @@ export default function Footer() {
   return (
     <footer className="editorial-footer">
       <div className="footer-brand">
-        <a
-          href="#home"
-          className="footer-monogram"
-          aria-label="Back to top"
-          onClick={createSectionClickHandler("home")}
-        >
-          <span>B</span>F
-        </a>
         <div>
           <strong>BilalHustle</strong>
           <p>Web development · AI automation · IT systems</p>
@@ -43,7 +35,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Muhammad Bilal Faisal</span>
-        <span>Karachi, Pakistan · PKT / UTC+5</span>
+        <span>Pakistan · PKT / UTC+5</span>
       </div>
     </footer>
   );

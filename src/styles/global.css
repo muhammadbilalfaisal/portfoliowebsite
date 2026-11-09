@@ -4904,6 +4904,23 @@ main {
   }
 }
 
+/* Brand cleanup and stronger button labels. */
+.header-primary {
+  grid-template-columns: 1fr 1fr;
+}
+
+.button,
+.editorial-nav .nav-cta {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .header-primary {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* Static pointer experience and complete responsive pass. */
 body {
   cursor: auto;

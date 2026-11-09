@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { projects } from "../data/projects";
 import { createSectionClickHandler } from "../utils/scrollToSection";
 import MouseParallax from "./effects/MouseParallax";
 import MagneticButton from "./ui/MagneticButton";
@@ -9,7 +8,6 @@ const title = "PORTFOLIO";
 
 export default function Hero() {
   const reducedMotion = useReducedMotion();
-  const completedProjects = projects.length;
 
   return (
     <section className="hero editorial-cover" id="home">
@@ -18,7 +16,7 @@ export default function Hero() {
         <span>Portfolio / 2026</span>
       </div>
       <div className="cover-meta cover-meta-right">
-        <span>Karachi, Pakistan</span>
+        <span>Pakistan</span>
         <span>PKT / UTC+5</span>
       </div>
 
@@ -78,7 +76,7 @@ export default function Hero() {
         transition={{ delay: reducedMotion ? 0 : 0.65 }}
       >
         <span className="micro-label">What I build</span>
-        <p>Websites, business systems, AI automation, and digital products.</p>
+        <p>Websites, Business Systems, AI Automation, and Digital Products.</p>
       </motion.div>
 
       <motion.div
@@ -120,9 +118,9 @@ export default function Hero() {
       <div className="cover-index" aria-label="Portfolio facts">
         <span>Web &amp; Business Systems Developer</span>
         <span>
-          {String(completedProjects).padStart(2, "0")} completed projects
+          50+ completed projects
         </span>
-        <span>Available for freelance projects</span>
+        <span>Building ventures · Open to strategic collaborations</span>
       </div>
     </section>
   );
