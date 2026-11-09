@@ -1,7 +1,23 @@
 import MouseParallax from "./MouseParallax";
 import ScrollParallax from "./ScrollParallax";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export default function InteractivePaperBackground() {
+  const compactViewport = useMediaQuery("(max-width: 800px)");
+  const ghostType = (
+    <MouseParallax
+      intensity={5}
+      spring={{ stiffness: 60, damping: 26, mass: 1 }}
+      className="paper-ghost"
+    >
+      BUILD
+      <br />
+      CREATE
+      <br />
+      AUTOMATE
+    </MouseParallax>
+  );
+
   return (
     <div className="paper-background" aria-hidden="true">
       <div className="paper-grain" />
@@ -48,19 +64,13 @@ export default function InteractivePaperBackground() {
           <path d="M1114-24C1172 162 1052 290 1095 463C1137 632 1176 754 1047 954" />
         </svg>
       </MouseParallax>
-      <ScrollParallax distance={38} className="paper-type-stack">
-        <MouseParallax
-          intensity={5}
-          spring={{ stiffness: 60, damping: 26, mass: 1 }}
-          className="paper-ghost"
-        >
-          BUILD
-          <br />
-          CREATE
-          <br />
-          AUTOMATE
-        </MouseParallax>
-      </ScrollParallax>
+      {compactViewport ? (
+        <div className="paper-type-stack">{ghostType}</div>
+      ) : (
+        <ScrollParallax distance={38} className="paper-type-stack">
+          {ghostType}
+        </ScrollParallax>
+      )}
       <MouseParallax intensity={5} className="paper-coordinate coordinate-a">
         X 24.8607 / Y 67.0011
       </MouseParallax>

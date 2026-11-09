@@ -8,6 +8,8 @@ function ProjectCard({ project, index }) {
       <div className="editorial-project-image">
         <img
           src={project.image}
+          srcSet={project.imageSrcSet}
+          sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 1100px) 50vw, 33vw"
           alt={`${project.title} project preview`}
           width={project.imageWidth ?? 1919}
           height={project.imageHeight ?? 1079}
