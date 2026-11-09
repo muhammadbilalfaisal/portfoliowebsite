@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="footer-brand">
         <div>
           <strong>BilalHustle</strong>
-          <p>Web development · AI automation · IT systems</p>
+          <p>ENTREPRENEUR · FOUNDER · TECHNOLOGIST</p>
         </div>
       </div>
 
